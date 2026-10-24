@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>あなたの挑戦を聞かせてください｜多摩の挑戦者100人</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#EDEFEC; --paper:#F7F8F6; --ink:#22272E; --mist:#5F6661; --line:#C7CDC6;
+  --hinoki:#DDBF8E; --hinoki-edge:#B8955E; --ai:#2B4C7E; --ai-ink:#FFFFFF; --ai-soft:#DCE3EE;
+  --rec:#B3261E; --ok:#2E6B3F; --err:#B3261E;
+  --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","YuGothic","Meiryo",sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#161A1E; --paper:#1D2227; --ink:#E6E8E4; --mist:#A3AAA5; --line:#39413F;
+    --hinoki:#CDAE7A; --hinoki-edge:#9C7C4A; --ai:#94B3E4; --ai-ink:#10213B; --ai-soft:#24324A;
+    --rec:#F2918A; --ok:#8CCB9B; --err:#F2918A;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#161A1E; --paper:#1D2227; --ink:#E6E8E4; --mist:#A3AAA5; --line:#39413F;
+  --hinoki:#CDAE7A; --hinoki-edge:#9C7C4A; --ai:#94B3E4; --ai-ink:#10213B; --ai-soft:#24324A;
+  --rec:#F2918A; --ok:#8CCB9B; --err:#F2918A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.8;-webkit-text-size-adjust:100%}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px 64px}
+a{color:var(--ai)}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ai);outline-offset:3px}
+header{padding:28px 0 8px;font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:.06em}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(28px,6vw,38px);line-height:1.45;margin:28px 0 14px}
+.lead{margin:0 0 10px}
+.mist{color:var(--mist);font-size:15px}
+.demo{background:var(--ai-soft);border-radius:4px;padding:10px 14px;font-size:14px;margin:18px 0 0}
+section.step{margin:40px 0 0;padding:28px 0 0;border-top:1px solid var(--line)}
+.step h2{font-family:var(--serif);font-size:22px;line-height:1.55;margin:0 0 6px;display:flex;gap:12px}
+.step h2 .n{flex:none;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:3px;background:var(--hinoki);border:1px solid var(--hinoki-edge);color:#2A2117;font-size:17px;margin-top:2px}
+.hint{color:var(--mist);font-size:15px;margin:0 0 16px}
+label.f{display:block;margin:0 0 16px}
+label.f span{display:block;font-size:15px;margin-bottom:4px}
+label.f em{font-style:normal;color:var(--mist);font-size:13px;margin-left:6px}
+input[type=text],input[type=email],input[type=tel],textarea{width:100%;padding:12px 12px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+textarea{min-height:140px;resize:vertical;line-height:1.7}
+.rec{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0 0 10px}
+.btn{appearance:none;border:1px solid var(--ai);background:var(--ai);color:var(--ai-ink);border-radius:4px;padding:12px 20px;font-size:17px;cursor:pointer;min-height:48px}
+.btn.ghost{background:transparent;color:var(--ai)}
+.btn.stop{background:var(--rec);border-color:var(--rec);color:#fff}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.timer{font-variant-numeric:tabular-nums;font-size:17px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rec);margin-right:6px;vertical-align:middle}
+@media (prefers-reduced-motion:no-preference){.dot{animation:blink 1s steps(2,start) infinite}@keyframes blink{to{visibility:hidden}}}
+audio{width:100%;margin:6px 0 4px}
+.status{font-size:14px;color:var(--mist);min-height:1.6em}
+.status.ok{color:var(--ok)}
+.status.err{color:var(--err)}
+.texttoggle{background:none;border:none;color:var(--ai);text-decoration:underline;padding:4px 0;cursor:pointer;font-size:15px}
+.err{color:var(--err);font-size:14px;margin:6px 0 0}
+.check{display:flex;gap:10px;align-items:flex-start;margin:0 0 14px;font-size:16px}
+.check input{width:22px;height:22px;margin-top:4px;flex:none}
+.photo-prev{display:block;max-width:180px;border-radius:4px;margin:10px 0 0;border:1px solid var(--line)}
+.submit{margin-top:36px}
+.submit .btn{width:100%;font-size:18px;min-height:56px}
+.done{margin-top:40px;padding:28px 22px;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+.done h2{font-family:var(--serif);font-size:24px;margin:0 0 10px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>多摩の挑戦者100人</header>
+
+  <main id="form-area">
+    <h1>あなたの挑戦を、<br>聞かせてください。</h1>
+    <p class="lead">4つの質問に、声で答えてください。お話をもとに、あなたの札（個人ページ）の原稿をおつくりします。</p>
+    <p class="mist">所要時間は10分ほどです。うまく話そうとしなくて大丈夫です。思い浮かんだ順にどうぞ。録音が苦手な方は、文字でも答えられます。</p>
+    <p class="demo hidden" id="demo-note">試作版です。このページから送信しても、内容はどこにも保存されません。</p>
+
+    <section class="step" aria-labelledby="s-about">
+      <h2 id="s-about"><span class="n" aria-hidden="true">1</span>あなたについて</h2>
+      <label class="f"><span>お名前</span><input type="text" id="name" autocomplete="name" required></label>
+      <label class="f"><span>ふりがな</span><input type="text" id="kana" required></label>
+      <label class="f"><span>会社名・団体名<em>任意</em></span><input type="text" id="company" autocomplete="organization"></label>
+      <label class="f"><span>肩書<em>任意</em></span><input type="text" id="title" autocomplete="organization-title"></label>
+      <label class="f"><span>メールアドレス<em>原稿の確認をお送りします</em></span><input type="email" id="email" autocomplete="email" required></label>
+      <p class="err hidden" id="err-about"></p>
+    </section>
+
+    <div id="questions"></div>
+
+    <section class="step" aria-labelledby="s-photo">
+      <h2 id="s-photo"><span class="n" aria-hidden="true">6</span>お写真</h2>
+      <p class="hint">札のページに載せるお写真を1枚お選びください。お顔がはっきり写ったものがおすすめです。あとから送っていただいても構いません。</p>
+      <input type="file" id="photo" accept="image/*">
+      <img id="photo-prev" class="photo-prev hidden" alt="選んだお写真">
+    </section>
+
+    <section class="step" aria-labelledby="s-consent">
+      <h2 id="s-consent"><span class="n" aria-hidden="true">7</span>ご確認</h2>
+      <label class="check"><input type="checkbox" id="c-ai"><span>お話の内容をAIで文字に起こし、ページの原稿にまとめることに同意します。</span></label>
+      <label class="check"><input type="checkbox" id="c-pub"><span>できあがった原稿を私が確認して承認したあとに、氏名・会社名・写真・原稿をサイトで公開することに同意します。</span></label>
+      <p class="mist">公開後も、ご連絡いただければいつでも取り下げます。</p>
+      <p class="err hidden" id="err-consent"></p>
+    </section>
+
+    <div class="submit">
+      <button class="btn" id="submit" type="button">送信する</button>
+      <p class="status" id="submit-status" role="status"></p>
+    </div>
+  </main>
+
+  <section class="done hidden" id="done" tabindex="-1">
+    <h2>受け付けました。</h2>
+    <p>お話をありがとうございました。原稿ができあがりましたら、ご登録のメールアドレスにお知らせします。内容をご確認いただき、承認をいただいてから公開します。</p>
+  </section>
+</div>
+
+<script>
+(function(){
+  // 送信先：GASウェブアプリのURL。空のままなら試作モード（送信しない）
+  var GAS_URL = "https://script.google.com/macros/s/AKfycbzoP3ONSs8dt7FWNeQh-58DKlFeIAdlOQFgopNbOuaU8bgPzCJfg2Zml5iVOITyfATn/exec";
+  var DEMO = !GAS_URL;
+  var MAX_SEC = 180;
+
+  var QUESTIONS = [
+    {n:2, q:"いま、どんな挑戦をしていますか。", hint:"目安は1〜2分です。"},
+    {n:3, q:"その挑戦を始めた理由、続けている理由は何ですか。いちばん苦しかったときのことも聞かせてください。", hint:"目安は2分ほどです。"},
+    {n:4, q:"仕事や人生で、大切にしている価値観は何ですか。それを大切にするようになったきっかけや出来事があれば、あわせて聞かせてください。", hint:"目安は1〜2分です。"},
+    {n:5, q:"3月3日に向けて、そしてその先へ、どんな宣言をしますか。", hint:"短くて構いません。一言でもどうぞ。"}
+  ];
+
+  if (DEMO) document.getElementById('demo-note').classList.remove('hidden');
+
+  function uid(){
+    try { if (crypto.randomUUID) return crypto.randomUUID(); } catch(e){}
+    return 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,10);
+  }
+  var SESSION;
+  try { SESSION = localStorage.getItem('tama100_session'); } catch(e){}
+  if (!SESSION){ SESSION = uid(); try { localStorage.setItem('tama100_session', SESSION); } catch(e){} }
+
+  var answers = {}; // n -> {blob, mime, uploaded, text, mode}
+  var qWrap = document.getElementById('questions');
+
+  QUESTIONS.forEach(function(item, i){
+    var idx = i + 1;
+    answers[idx] = {blob:null, mime:'', uploaded:false, text:'', mode:'voice'};
+    var sec = document.createElement('section');
+    sec.className = 'step';
+    sec.setAttribute('aria-labelledby', 'q' + idx + '-h');
+    sec.innerHTML =
+      '<h2 id="q' + idx + '-h"><span class="n" aria-hidden="true">' + item.n + '</span>' + item.q + '</h2>' +
+      '<p class="hint">' + item.hint + '</p>' +
+      '<div class="voice">' +
+        '<div class="rec"><button class="btn" type="button" data-act="rec">録音をはじめる</button>' +
+        '<span class="timer hidden" aria-live="off"><span class="dot"></span><span class="t">0:00</span></span></div>' +
+        '<audio controls class="hidden"></audio>' +
+        '<p class="status" role="status"></p>' +
+      '</div>' +
+      '<div class="text hidden"><label class="f"><span>文字で答える</span><textarea></textarea></label></div>' +
+      '<button class="texttoggle" type="button">文字で答える</button>' +
+      '<p class="err hidden"></p>';
+    qWrap.appendChild(sec);
+    wire(sec, idx);
+  });
+
+  function fmt(s){ return Math.floor(s/60) + ':' + ('0' + (s%60)).slice(-2); }
+
+  function pickMime(){
+    var c = ['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/aac'];
+    if (!window.MediaRecorder) return '';
+    for (var i=0;i<c.length;i++){ try { if (MediaRecorder.isTypeSupported(c[i])) return c[i]; } catch(e){} }
+    return '';
+  }
+
+  function wire(sec, idx){
+    var btn = sec.querySelector('[data-act=rec]');
+    var timer = sec.querySelector('.timer');
+    var tEl = sec.querySelector('.t');
+    var audio = sec.querySelector('audio');
+    var status = sec.querySelector('.voice .status');
+    var toggle = sec.querySelector('.texttoggle');
+    var voiceBox = sec.querySelector('.voice');
+    var textBox = sec.querySelector('.text');
+    var ta = sec.querySelector('textarea');
+    var err = sec.querySelector('.err');
+    var rec = null, chunks = [], sec0 = 0, tick = null, stream = null;
+
+    try { ta.value = localStorage.getItem('tama100_q' + idx) || ''; } catch(e){}
+    if (ta.value){ answers[idx].text = ta.value; }
+    ta.addEventListener('input', function(){
+      answers[idx].text = ta.value; err.classList.add('hidden');
+      try { localStorage.setItem('tama100_q' + idx, ta.value); } catch(e){}
+    });
+
+    toggle.addEventListener('click', function(){
+      var toText = textBox.classList.contains('hidden');
+      textBox.classList.toggle('hidden', !toText);
+      voiceBox.classList.toggle('hidden', toText);
+      toggle.textContent = toText ? '声で答える' : '文字で答える';
+      answers[idx].mode = toText ? 'text' : 'voice';
+      if (toText) ta.focus();
+    });
+
+    function stopRec(){
+      if (rec && rec.state !== 'inactive') rec.stop();
+    }
+
+    btn.addEventListener('click', function(){
+      err.classList.add('hidden');
+      if (rec && rec.state === 'recording'){ stopRec(); return; }
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder){
+        status.className = 'status err';
+        status.textContent = 'このブラウザでは録音ができません。「文字で答える」からご入力ください。';
+        return;
+      }
+      navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){
+        stream = s; chunks = [];
+        var mime = pickMime();
+        try { rec = mime ? new MediaRecorder(s, {mimeType:mime}) : new MediaRecorder(s); }
+        catch(e){ rec = new MediaRecorder(s); }
+        rec.ondataavailable = function(ev){ if (ev.data && ev.data.size) chunks.push(ev.data); };
+        rec.onstop = function(){
+          clearInterval(tick);
+          stream.getTracks().forEach(function(t){ t.stop(); });
+          timer.classList.add('hidden');
+          btn.className = 'btn ghost';
+          btn.textContent = '録り直す';
+          var type = rec.mimeType || 'audio/webm';
+          var blob = new Blob(chunks, {type:type});
+          answers[idx].blob = blob; answers[idx].mime = type; answers[idx].uploaded = false;
+          audio.src = URL.createObjectURL(blob);
+          audio.classList.remove('hidden');
+          upload(idx, status);
+        };
+        rec.start(1000);
+        sec0 = 0; tEl.textContent = '0:00';
+        timer.classList.remove('hidden');
+        btn.className = 'btn stop';
+        btn.textContent = '録音を止める';
+        status.className = 'status';
+        status.textContent = '録音しています。話し終えたら「録音を止める」を押してください。';
+        tick = setInterval(function(){
+          sec0++; tEl.textContent = fmt(sec0);
+          if (sec0 >= MAX_SEC){ stopRec(); }
+        }, 1000);
+      }).catch(function(){
+        status.className = 'status err';
+        status.textContent = 'マイクが使えませんでした。ブラウザの設定でマイクを許可するか、「文字で答える」からご入力ください。';
+      });
+    });
+  }
+
+  function toBase64(blob){
+    return new Promise(function(res, rej){
+      var r = new FileReader();
+      r.onload = function(){ res(String(r.result).split(',')[1]); };
+      r.onerror = function(){ rej(new Error('read')); };
+      r.readAsDataURL(blob);
+    });
+  }
+
+  function post(payload){
+    return fetch(GAS_URL, {method:'POST', body: JSON.stringify(payload)})
+      .then(function(r){ return r.json(); })
+      .then(function(j){ if (!j || !j.ok) throw new Error((j && j.error) || 'server'); return j; });
+  }
+
+  function upload(idx, statusEl){
+    var a = answers[idx];
+    if (!a.blob) return Promise.resolve();
+    if (DEMO){
+      a.uploaded = true;
+      statusEl.className = 'status ok';
+      statusEl.textContent = '録音できました（試作版のため保存はしていません）。再生して確かめられます。';
+      return Promise.resolve();
+    }
+    statusEl.className = 'status';
+    statusEl.textContent = '保存しています…';
+    return toBase64(a.blob).then(function(b64){
+      return post({action:'upload', session:SESSION, q:idx, mime:a.mime, data:b64});
+    }).then(function(){
+      a.uploaded = true;
+      statusEl.className = 'status ok';
+      statusEl.textContent = '保存しました。再生して確かめられます。録り直すこともできます。';
+    }).catch(function(){
+      statusEl.className = 'status err';
+      statusEl.textContent = '保存できませんでした。通信状態をご確認ください。送信のときにもう一度保存を試みます。';
+    });
+  }
+
+  // 写真：長辺1200pxに縮小してJPEG化
+  var photoB64 = '';
+  document.getElementById('photo').addEventListener('change', function(ev){
+    var f = ev.target.files && ev.target.files[0];
+    if (!f) return;
+    var img = new Image();
+    img.onload = function(){
+      var max = 1200, w = img.width, h = img.height;
+      var sc = Math.min(1, max / Math.max(w, h));
+      var c = document.createElement('canvas');
+      c.width = Math.round(w*sc); c.height = Math.round(h*sc);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      var url = c.toDataURL('image/jpeg', 0.85);
+      photoB64 = url.split(',')[1];
+      var prev = document.getElementById('photo-prev');
+      prev.src = url; prev.classList.remove('hidden');
+    };
+    img.src = URL.createObjectURL(f);
+  });
+
+  function val(id){ return document.getElementById(id).value.trim(); }
+  function showErr(el, msg){ el.textContent = msg; el.classList.remove('hidden'); }
+
+  document.getElementById('submit').addEventListener('click', function(){
+    var ok = true, firstBad = null;
+    var eAbout = document.getElementById('err-about'); eAbout.classList.add('hidden');
+    var miss = [];
+    if (!val('name')) miss.push('お名前');
+    if (!val('kana')) miss.push('ふりがな');
+    var email = val('email');
+    if (!email) miss.push('メールアドレス');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr(eAbout, 'メールアドレスの形式をご確認ください。'); ok = false; firstBad = firstBad || eAbout; }
+    if (miss.length){ showErr(eAbout, miss.join('、') + 'をご入力ください。'); ok = false; firstBad = firstBad || eAbout; }
+
+    var secs = qWrap.querySelectorAll('section.step');
+    QUESTIONS.forEach(function(item, i){
+      var idx = i + 1, a = answers[idx];
+      var e = secs[i].querySelector('.err');
+      e.classList.add('hidden');
+      var hasVoice = !!a.blob;
+      var hasText = (a.text || '').trim().length >= 10;
+      if (!hasVoice && !hasText){
+        showErr(e, '録音するか、文字で答えてください（文字の場合は10字以上）。');
+        ok = false; firstBad = firstBad || e;
+      }
+    });
+
+    var eC = document.getElementById('err-consent'); eC.classList.add('hidden');
+    if (!document.getElementById('c-ai').checked || !document.getElementById('c-pub').checked){
+      showErr(eC, '2つの項目をご確認のうえ、チェックを入れてください。');
+      ok = false; firstBad = firstBad || eC;
+    }
+    if (!ok){ firstBad.scrollIntoView({block:'center'}); return; }
+
+    var btn = this, st = document.getElementById('submit-status');
+    btn.disabled = true; st.className = 'status'; st.textContent = '送信しています…';
+
+    var pending = [];
+    QUESTIONS.forEach(function(item, i){
+      var idx = i + 1;
+      if (answers[idx].blob && !answers[idx].uploaded){
+        pending.push(upload(idx, secs[i].querySelector('.voice .status')));
+      }
+    });
+
+    Promise.all(pending).then(function(){
+      var notUp = QUESTIONS.some(function(item, i){ var a = answers[i+1]; return a.blob && !a.uploaded && !(a.text||'').trim(); });
+      if (notUp) throw new Error('upload');
+      var payload = {
+        action:'submit', session:SESSION,
+        name:val('name'), kana:val('kana'), company:val('company'), title:val('title'), email:email,
+        texts: QUESTIONS.map(function(item, i){ return (answers[i+1].text || '').trim(); }),
+        voice: QUESTIONS.map(function(item, i){ return !!answers[i+1].blob; }),
+        photo: photoB64, consentAI:true, consentPublish:true,
+        ua: navigator.userAgent
+      };
+      if (DEMO) return {ok:true};
+      return post(payload);
+    }).then(function(){
+      try {
+        localStorage.removeItem('tama100_session');
+        for (var k=1;k<=4;k++) localStorage.removeItem('tama100_q' + k);
+      } catch(e){}
+      document.getElementById('form-area').classList.add('hidden');
+      var d = document.getElementById('done');
+      d.classList.remove('hidden'); d.focus(); window.scrollTo(0,0);
+    }).catch(function(){
+      btn.disabled = false;
+      st.className = 'status err';
+      st.textContent = '送信できませんでした。通信状態をご確認のうえ、もう一度「送信する」を押してください。';
+    });
+  });
+})();
+</script>
+</body>
+</html>
