@@ -1,218 +1,338 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>多摩の挑戦者100人</title>
+<meta name="theme-color" content="#15191C">
+<meta name="description" content="八王子・多摩で挑戦する100人が集い、一人ひとりの物語を「札」として残す一夜。2027年3月3日（水）八王子エルシィ。特別講演 横川竟氏（株式会社高倉町珈琲 代表取締役会長）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="多摩の挑戦者100人｜八王子経営者フォーラム2027">
+<meta property="og:description" content="主役は、参加する100人。2027年3月3日（水）八王子エルシィ。">
+<title>多摩の挑戦者100人｜八王子経営者フォーラム2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ground:#EDEFEC; --paper:#F7F8F6; --ink:#22272E; --mist:#6B726D; --line:#C7CDC6;
-  --hinoki:#DDBF8E; --hinoki-edge:#B8955E; --ai:#2B4C7E; --ai-soft:#DCE3EE; --draft:#8A5A1E;
-  --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
-  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","YuGothic","Meiryo",sans-serif;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
+  --sumi:#15191C; --sumi2:#21272B; --paper:#F3F2EE; --white:#FFFFFF;
+  --ink:#1B1F22; --muted:#5B6166; --line:#D7D4CC;
+  --shu:#C8442A; --shu-hover:#B23A22; --shu-soft:#E9805F; --hinoki:#DDBF8E; --hinoki-edge:#B8955E;
+  --font:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --ground:#161A1E; --paper:#1D2227; --ink:#E6E8E4; --mist:#9AA19C; --line:#39413F;
-    --hinoki:#CDAE7A; --hinoki-edge:#9C7C4A; --ai:#94B3E4; --ai-soft:#24324A; --draft:#E2B474;
-  }
-}
-:root[data-theme="dark"]{
-  --ground:#161A1E; --paper:#1D2227; --ink:#E6E8E4; --mist:#9AA19C; --line:#39413F;
-  --hinoki:#CDAE7A; --hinoki-edge:#9C7C4A; --ai:#94B3E4; --ai-soft:#24324A; --draft:#E2B474;
-}
-*,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8;-webkit-text-size-adjust:100%}
-a{color:var(--ai)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--ai);outline-offset:3px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-header.site{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:28px 0 0;flex-wrap:wrap}
-.logo{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:.08em;color:var(--ink);text-decoration:none}
-.when{font-size:14px;color:var(--mist)}
-.hero{padding:56px 0 36px;max-width:40em}
-.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,5.2vw,52px);line-height:1.35;margin:0 0 18px;letter-spacing:.04em}
-.hero p{margin:0;font-size:17px;color:var(--mist)}
-.board-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:8px 0 14px;flex-wrap:wrap}
-.board-head h2{font-family:var(--serif);font-size:20px;margin:0}
-.count{font-size:14px;color:var(--mist)}
-.count b{font-family:var(--serif);font-size:22px;color:var(--ink);font-weight:700}
-.board{display:grid;grid-template-columns:repeat(20,1fr);gap:8px;padding:22px 18px;background:var(--paper);border:1px solid var(--line);border-radius:6px}
-@media (max-width:900px){.board{grid-template-columns:repeat(10,1fr)}}
-@media (max-width:520px){.board{grid-template-columns:repeat(5,1fr);gap:10px}}
-.tag{position:relative;display:flex;flex-direction:column;align-items:center;aspect-ratio:2/5;border:1px dashed var(--line);border-radius:3px 3px 2px 2px;text-decoration:none;color:var(--mist);padding-top:16px;min-width:0}
-.tag::before{content:"";position:absolute;top:6px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid var(--line)}
-.tag .no{font-size:11px;line-height:1;font-variant-numeric:tabular-nums}
-.tag .nm{writing-mode:vertical-rl;font-family:var(--serif);font-weight:700;font-size:13px;letter-spacing:.06em;margin-top:8px;white-space:nowrap;flex:none;line-height:1}
-.tag.lit{background:var(--hinoki);border:1px solid var(--hinoki-edge);color:#2A2117}
-.tag.lit::before{border-color:#7A5E36;background:var(--ground)}
-.tag:not(.lit):hover{border-color:var(--ai);color:var(--ai)}
-@media (prefers-reduced-motion:no-preference){
-  .tag.lit.first{animation:light 1.4s ease-out .5s both}
-  @keyframes light{from{background:transparent;border-color:var(--line);color:var(--mist)}to{}}
-}
-.board-note{font-size:14px;color:var(--mist);margin:12px 0 0}
-section.join{margin:64px 0 72px;display:grid;grid-template-columns:1fr 1fr;gap:40px;border-top:1px solid var(--line);padding-top:36px}
-@media (max-width:760px){section.join{grid-template-columns:1fr;gap:24px}}
-.join h2{font-family:var(--serif);font-size:26px;margin:0 0 12px;line-height:1.5}
-.join p{margin:0 0 12px}
-dl.info{margin:0;display:grid;grid-template-columns:6.5em 1fr;row-gap:10px;font-size:15px}
-dl.info dt{color:var(--mist)}
-dl.info dd{margin:0}
-.soon{display:inline-block;margin-top:8px;padding:10px 18px;border:1px solid var(--ai);border-radius:4px;color:var(--ai);font-size:15px}
-footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:13px;color:var(--mist)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--paper);line-height:1.85;font-size:16px;-webkit-text-size-adjust:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--shu-soft);outline-offset:4px}
+.container{width:min(100% - 40px,1040px);margin-inline:auto}
+.section{padding:88px 0}
+.label{display:block;font-size:14px;font-weight:700;color:var(--shu);letter-spacing:.06em}
+.section-title{font-size:clamp(30px,4.6vw,48px);font-weight:900;line-height:1.4;letter-spacing:-.01em;margin:10px 0 26px}
+.lead{font-size:clamp(17px,2.1vw,20px);font-weight:700;line-height:1.9}
+.small{font-size:13px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:62px;padding:14px 30px;background:var(--shu);color:#fff;text-decoration:none;font-weight:700;font-size:17px;letter-spacing:.04em;border-radius:4px;box-shadow:5px 5px 0 rgba(0,0,0,.35);transition:background .2s,transform .2s}
+.btn:hover{background:var(--shu-hover);transform:translate(-1px,-1px)}
+.btn .arr{font-size:18px}
 
-/* person page */
-.draft{background:var(--ai-soft);color:var(--ink);font-size:14px;padding:12px 16px;border-radius:4px;margin:24px 0 0}
-.back{display:inline-block;margin-top:28px;font-size:15px;text-decoration:none}
-.person{display:grid;grid-template-columns:150px 1fr;gap:48px;padding:44px 0 24px;align-items:start}
-@media (max-width:640px){.person{grid-template-columns:64px 1fr;gap:18px;padding-top:32px}}
-.bigtag{position:sticky;top:24px;display:flex;flex-direction:column;align-items:center;width:110px;aspect-ratio:2/5;background:var(--hinoki);border:1px solid var(--hinoki-edge);border-radius:4px;color:#2A2117;padding-top:30px}
-@media (max-width:640px){.bigtag{position:relative;top:0;width:60px;padding-top:24px}.bigtag::before{top:9px;width:8px;height:8px;margin-left:-4px}.photo-note{font-size:11px}}
-.bigtag::before{content:"";position:absolute;top:12px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;border:1px solid #7A5E36;background:var(--ground)}
-.bigtag .no{font-size:13px}
-.bigtag .nm{writing-mode:vertical-rl;font-family:var(--serif);font-weight:700;font-size:24px;letter-spacing:.18em;margin-top:14px;white-space:nowrap;flex:none;line-height:1}
-@media (max-width:640px){.bigtag .nm{font-size:16px;letter-spacing:.1em}}
-.catch{font-family:var(--serif);font-weight:700;font-size:clamp(30px,5vw,52px);word-break:keep-all;overflow-wrap:anywhere;line-height:1.3;margin:0 0 20px;letter-spacing:.04em}
-.who{font-size:15px;color:var(--mist);margin:0 0 40px}
-.who strong{font-family:var(--serif);font-size:22px;color:var(--ink);font-weight:700;margin-right:12px}
-.block{max-width:36em;margin:0 0 44px}
-.block h2{font-size:14px;font-weight:500;color:var(--mist);margin:0 0 10px;letter-spacing:.06em}
-.protect{font-family:var(--serif);font-weight:700;font-size:clamp(22px,3vw,28px);line-height:1.6;margin:0}
-.story p{font-family:var(--serif);font-size:17px;line-height:2.05;margin:0 0 1.2em}
-.decl{border-left:3px solid var(--hinoki-edge);padding:4px 0 4px 20px;border-radius:0}
-.decl p{font-family:var(--serif);font-weight:700;font-size:22px;line-height:1.7;margin:0}
-.kari{display:inline-block;font-size:12px;color:var(--draft);border:1px solid var(--draft);border-radius:3px;padding:0 6px;margin-left:8px;vertical-align:middle;font-family:var(--sans);font-weight:500}
-.profile{font-size:15px;color:var(--mist)}
-.photo-note{font-size:13px;color:var(--mist);margin-top:14px;max-width:150px}
-.next{border-top:1px solid var(--line);padding:28px 0 56px;max-width:36em}
-.next p{margin:0 0 14px}
+/* 帯 */
+.topline{background:var(--shu);color:#fff;text-align:center;padding:9px 14px;font-size:13px;font-weight:700;letter-spacing:.08em}
+
+/* ヒーロー */
+.hero{background:var(--sumi);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+.hero::before{content:"100";position:absolute;right:-.06em;top:.02em;font-family:var(--font);font-weight:900;font-size:clamp(260px,46vw,640px);line-height:1;letter-spacing:-.06em;color:rgba(255,255,255,.045);pointer-events:none;z-index:-1}
+.hero::after{content:"";position:absolute;right:0;top:0;bottom:0;width:10px;background:var(--shu);z-index:-1}
+.hero-inner{padding:28px 0 96px}
+.brand{font-size:14px;color:#D9DCDA;letter-spacing:.06em}
+.hero-main{padding-top:68px;max-width:860px}
+.hero-kicker{display:inline-block;border:1px solid rgba(255,255,255,.45);padding:5px 12px;font-size:14px;letter-spacing:.06em;margin:0 0 26px;color:#EDEDEB}
+.hero h1{font-weight:900;font-size:clamp(54px,10vw,120px);line-height:1.08;letter-spacing:-.03em;margin:0}
+.hero h1 .hundred{color:var(--shu-soft)}
+.hero-subtitle{font-size:16px;font-weight:700;letter-spacing:.12em;margin:22px 0 34px;color:#E2E4E2}
+.hero-message{font-weight:700;font-size:clamp(22px,3.6vw,34px);line-height:1.6;margin:0 0 34px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 30px}
+.hero-meta>div{border:1px solid rgba(255,255,255,.4);padding:10px 18px;font-size:16px;border-radius:3px}
+.hero-meta b{color:var(--hinoki)}
+.hero-note{font-size:14px;color:#C9CDCB;margin:14px 0 0}
+
+/* コンセプト */
+.intro{background:var(--white)}
+.intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.intro-copy p{margin:0 0 16px}
+.intro strong{color:var(--shu)}
+.board{background:var(--sumi);padding:24px 22px 22px;border-radius:6px;box-shadow:8px 8px 0 var(--shu)}
+.board-head{display:flex;justify-content:space-between;align-items:baseline;color:#E6E7E5;font-size:13px;margin:0 2px 16px}
+.board-head b{color:var(--hinoki);font-size:18px}
+.fuda-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.fuda{position:relative;aspect-ratio:2/5;border:1px dashed rgba(255,255,255,.28);border-radius:3px;display:flex;flex-direction:column;align-items:center;padding-top:16px;color:rgba(255,255,255,.5)}
+.fuda::before{content:"";position:absolute;top:6px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid rgba(255,255,255,.35)}
+.fuda .no{font-size:12px}
+.fuda .nm{writing-mode:vertical-rl;font-weight:700;font-size:15px;letter-spacing:.12em;margin-top:8px;white-space:nowrap}
+.fuda.lit{background:var(--hinoki);border:1px solid var(--hinoki-edge);color:#2A2117}
+.fuda.lit::before{border-color:#7A5E36;background:var(--sumi)}
+.board-foot{font-size:13px;color:#C9CDCB;margin:14px 2px 0}
+.board-link{display:inline-block;margin:12px 2px 0;color:var(--hinoki);font-weight:700;font-size:15px}
+
+/* 流れ */
+.steps{background:var(--paper)}
+.step-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:34px;padding:0;list-style:none}
+.step{background:var(--white);border:1.5px solid var(--ink);border-radius:4px;box-shadow:4px 4px 0 var(--ink);padding:22px 20px 24px}
+.step-n{font-weight:900;font-size:34px;line-height:1;color:var(--shu)}
+.step h3{font-size:18px;font-weight:700;margin:14px 0 8px;line-height:1.5}
+.step p{font-size:15px;line-height:1.85;margin:0;color:#41474B}
+.assure{display:flex;gap:14px;align-items:flex-start;margin-top:22px;background:var(--white);border:1.5px solid var(--ink);border-radius:4px;padding:18px 20px;font-size:15px}
+.assure-mark{flex:none;width:26px;height:26px;border-radius:50%;background:var(--shu);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px}
+.assure b{display:block}
+details.q4{margin-top:30px;border-top:1px solid var(--line);padding-top:22px}
+details.q4 summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:15px}
+details.q4 summary::-webkit-details-marker{display:none}
+details.q4 summary::after{content:"＋";color:var(--shu);font-size:20px}
+details.q4[open] summary::after{content:"−"}
+details.q4 ol{padding-left:24px;margin:16px 0 0}
+details.q4 li{padding:6px 0;font-size:16px}
+
+/* 登壇者 */
+.speakers{background:var(--white)}
+.speaker-card{display:grid;grid-template-columns:120px 1fr;gap:30px;padding:30px 0;border-top:1px solid var(--line);align-items:start}
+.photo{width:110px;aspect-ratio:4/5;border:1.5px dashed #A9A59B;border-radius:4px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;color:var(--muted);padding:6px;line-height:1.5}
+.speaker-role{font-size:14px;font-weight:700;color:var(--shu)}
+.speaker-name{font-size:clamp(26px,4vw,38px);font-weight:900;margin:4px 0 0;line-height:1.4}
+.speaker-name small{font-size:14px;font-weight:400;color:var(--muted);margin-left:8px}
+.speaker-affil{font-weight:700;font-size:15px;margin:4px 0 14px}
+.speaker-desc{margin:0;font-size:16px;color:#3A4044;line-height:1.95}
+.dialogue{margin-top:28px;background:var(--sumi);color:#fff;padding:28px 30px;border-radius:4px;border-left:8px solid var(--shu)}
+.dialogue .label{color:var(--shu-soft)}
+.dialogue h3{font-size:clamp(22px,3vw,30px);font-weight:900;margin:8px 0 6px;line-height:1.5}
+.dialogue p{font-size:15px;color:#DADDDB;margin:0}
+
+/* プログラム */
+.program{background:var(--sumi);color:#fff}
+.program .label{color:var(--shu-soft)}
+.schedule{max-width:760px;border-top:1px solid #3E4549;margin:30px 0 0}
+.schedule-item{display:grid;grid-template-columns:96px 1fr;gap:22px;padding:22px 0;border-bottom:1px solid #3E4549}
+.schedule-item time{font-size:24px;font-weight:900;color:var(--hinoki);font-variant-numeric:tabular-nums}
+.schedule-item strong{display:block;font-size:17px}
+.schedule-item small{font-size:14px;color:#B9BEBC;display:block;margin-top:4px}
+.program .small{color:#B9BEBC;margin-top:16px}
+
+/* 開催概要 */
+.details{background:var(--paper)}
+.detail-table{margin:30px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.detail-item{background:var(--white);border:1.5px solid var(--ink);border-radius:4px;padding:20px 22px}
+.detail-item dt{font-size:14px;color:var(--shu);font-weight:700;margin-bottom:6px}
+.detail-item dd{margin:0;font-size:17px;font-weight:700;line-height:1.8}
+.detail-item .sub{display:block;font-size:14px;color:var(--muted);font-weight:400}
+.tbd{display:inline-block;font-size:13px;font-weight:700;color:var(--shu);border:1px solid var(--shu);border-radius:3px;padding:0 6px;margin-left:6px;vertical-align:2px}
+
+/* よくある質問 */
+.faq{background:var(--white)}
+.faq-list{max-width:820px;margin-top:26px;border-top:1px solid var(--line)}
+.faq-list details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq-list summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"＋";color:var(--shu);font-size:20px;flex:none}
+.faq-list details[open] summary::after{content:"−"}
+.faq-list p{margin:12px 0 0;font-size:16px;color:#3A4044}
+
+/* 締め */
+.final-cta{background:var(--sumi);color:#fff;text-align:center;padding:84px 0 96px;position:relative;overflow:hidden;isolation:isolate}
+.final-cta::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:var(--shu)}
+.final-cta h2{font-size:clamp(32px,5.4vw,56px);font-weight:900;line-height:1.45;margin:6px 0 18px}
+.final-cta .label{color:var(--shu-soft)}
+.final-cta p{color:#DADDDB;font-size:16px;margin:0 auto 30px;max-width:34em}
+.final-cta .hero-note{margin-top:16px}
+footer{background:#0E1113;color:#B3B8B6;text-align:center;padding:26px 18px 110px;font-size:13px}
+footer a{color:#E2E4E2}
+.mobile-cta{display:none}
+
+@media (max-width:760px){
+  .section{padding:68px 0}
+  .hero-main{padding-top:56px}
+  .hero-meta{flex-direction:column;align-items:flex-start}
+  .intro-grid{grid-template-columns:1fr;gap:34px}
+  .board{max-width:480px;width:100%;margin:auto;box-shadow:6px 6px 0 var(--shu)}
+  .step-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .detail-table{grid-template-columns:1fr}
+  .mobile-cta{position:fixed;z-index:30;left:0;right:0;bottom:0;display:block;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(21,25,28,.96);border-top:2px solid var(--shu)}
+  .mobile-cta .btn{width:100%;min-height:54px;box-shadow:none}
+}
+@media (max-width:450px){
+  .container{width:calc(100% - 32px)}
+  .hero h1{font-size:clamp(50px,13vw,64px)}
+  .hero-message{font-size:22px}
+  .section-title{font-size:28px}
+  .speaker-name small{display:block;margin-left:0}
+  .step-grid{grid-template-columns:1fr}
+  .speaker-card{grid-template-columns:76px 1fr;gap:16px}
+  .photo{width:76px;font-size:11px}
+  .schedule-item{grid-template-columns:72px 1fr;gap:14px}
+  .schedule-item time{font-size:20px}
+  .fuda .nm{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 </style>
 </head>
 <body>
-<div class="wrap" id="app"></div>
+<div class="topline">2027年3月3日（水）八王子エルシィで開催</div>
 
-<script id="people" type="application/json">
-[
-  {
-    "no": 1,
-    "name": "横川 竟",
-    "kana": "よこかわ きわむ",
-    "company": "株式会社高倉町珈琲",
-    "title": "代表取締役会長",
-    "catch": "挑戦に、定年はない。",
-    "values": "働く人と、その家族の暮らし。",
-    "story": [
-      "幼いころの厳しい暮らしを経て、兄弟とともに小さな商いを始めた。それがやがて、日本の外食を変えたすかいらーくへと育っていく。オイルショック、事業の転換、企業の再建。そして、自ら創った会社を去るという、誰よりも大きな挫折も味わった。",
-      "それでも歩みを止めなかった。75歳。多くの人が引退を考える歳に、八王子・高倉町の一号店から、もう一度ゼロから商売を始めた。掲げた言葉は「いつも新鮮、いつも親切」。安売りではなく、お客様に本当に良い一杯と、居心地のよい時間を届けること。商売は、正直であること。",
-      "会社は、社員だけでなくその家族の暮らしにも責任を持つ。そして事業承継とは、会社の権利を渡すことではなく、経営者の思想と責任を「たすき」として次の世代に手渡すことだ。長い商いの道のりが、その言葉に重みを与えている。"
-    ],
-    "future": "効率よりも、居心地を。世代の違う人たちが日常的に集い、言葉を交わせる場所が、まちの中に増えていく。",
-    "declaration": "商いの正直さというたすきを、次の世代に渡しきる。",
-    "declarationDraft": true,
-    "profile": "株式会社高倉町珈琲 代表取締役会長。兄弟とともにすかいらーくを創業し、日本のファミリーレストランの礎を築く。75歳で八王子市高倉町に高倉町珈琲を創業。",
-    "sample": true
-  }
-]
-</script>
+<header class="hero">
+  <div class="container hero-inner">
+    <div class="brand">主催　八王子市倫理法人会</div>
+    <div class="hero-main">
+      <p class="hero-kicker">100人の挑戦者が、ひとつの夜に集う</p>
+      <h1>多摩の<br>挑戦者<span class="hundred">100</span>人</h1>
+      <p class="hero-subtitle">八王子経営者フォーラム2027</p>
+      <p class="hero-message">挑戦は、まだ終わらない。<br>次の一歩を、この夜から。</p>
+      <div class="hero-meta">
+        <div><b>2027年3月3日（水）</b>18:30〜20:30</div>
+        <div><b>八王子エルシィ</b>　定員100名</div>
+      </div>
+      <!-- 申込開始時に href="#" を Peatix の申込URLへ差し替える（3か所） -->
+      <a class="btn" href="#" aria-label="参加を申し込む（申込ページは準備中）">参加を申し込む <span class="arr" aria-hidden="true">→</span></a>
+      <p class="hero-note">お申し込みはPeatixから受け付けます（申込ページは準備中です）</p>
+    </div>
+  </div>
+</header>
 
-<script>
-(function(){
-  var TOTAL = 100;
-  var people = [];
-  try { people = JSON.parse(document.getElementById('people').textContent); } catch(e) { people = []; }
-  var byNo = {};
-  people.forEach(function(p){ byNo[p.no] = p; });
-  var app = document.getElementById('app');
+<main>
+  <section class="section intro" id="concept">
+    <div class="container intro-grid">
+      <div class="intro-copy">
+        <span class="label">このイベントについて</span>
+        <h2 class="section-title">主役は、<br>参加する100人。</h2>
+        <p class="lead">講演を聴いて学ぶだけでなく、<strong>参加する一人ひとりの挑戦を、言葉にして残します。</strong></p>
+        <p>八王子・多摩で挑戦している100人が、一人一枚の「札」となってWebサイトに並びます。<strong>一番札は、横川竟氏。</strong>そして、あなたにもあなたの札があります。</p>
+        <p>大きな挑戦も、小さな一歩も。ここに集まる100人の物語が、次の誰かの挑戦を後押しすることを目指します。</p>
+      </div>
+      <div class="board" role="img" aria-label="100枚の札が並ぶWebサイトのイメージ。一番札は横川竟氏で、残りの札は参加者の物語で灯っていく。">
+        <div class="board-head"><span>挑戦者の札</span><span>灯った札 <b>1</b> / 100</span></div>
+        <div class="fuda-grid" aria-hidden="true">
+          <div class="fuda lit"><span class="no">1</span><span class="nm">横川竟</span></div>
+          <div class="fuda"><span class="no">2</span></div>
+          <div class="fuda"><span class="no">3</span></div>
+          <div class="fuda"><span class="no">4</span></div>
+          <div class="fuda"><span class="no">5</span></div>
+          <div class="fuda"><span class="no">6</span></div>
+          <div class="fuda"><span class="no">7</span></div>
+          <div class="fuda"><span class="no">8</span></div>
+          <div class="fuda"><span class="no">9</span></div>
+          <div class="fuda"><span class="no">10</span></div>
+        </div>
+        <p class="board-foot">参加者の物語ができるたびに、札が一枚ずつ灯ります。公開はご本人の承認後です。</p>
+        <a class="board-link" href="fuda.html">札の一覧を見る →</a>
+      </div>
+    </div>
+  </section>
 
-  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
-  function pad(n){ return ('00' + n).slice(-3); }
+  <section class="section steps" id="experience">
+    <div class="container">
+      <span class="label">参加するとできること</span>
+      <h2 class="section-title">あなたの挑戦が、<br>一枚の「札」になるまで。</h2>
+      <p>原稿を書く必要はありません。あなた自身の言葉で、いまの挑戦を聞かせてください。</p>
+      <ol class="step-grid">
+        <li class="step"><div class="step-n">1</div><h3>参加を申し込む</h3><p>Peatixからお申し込みください。</p></li>
+        <li class="step"><div class="step-n">2</div><h3>4つの質問に答える</h3><p>申込後にご案内する専用ページで、声で答えます。所要10分ほど。文字でも答えられます。</p></li>
+        <li class="step"><div class="step-n">3</div><h3>あなたの物語をつくる</h3><p>お話をもとに、あなたの挑戦を紹介する個人ページの原稿をおつくりします。</p></li>
+        <li class="step"><div class="step-n">4</div><h3>確認して、札を公開</h3><p>原稿をご本人が確認・承認したあとに、100人のサイトに掲載します。</p></li>
+      </ol>
+      <div class="assure"><span class="assure-mark" aria-hidden="true">✓</span><div><b>公開は、必ずご本人の承認後です。</b>原稿をご確認いただき、承認をいただくまで、個人ページは公開しません。</div></div>
+      <details class="q4"><summary>お聞きする4つの質問を見る</summary>
+        <ol>
+          <li>いま、どんな挑戦をしていますか。</li>
+          <li>その挑戦を始めた理由、続けている理由は何ですか。いちばん苦しかったときのことも聞かせてください。</li>
+          <li>仕事や人生で、大切にしている価値観は何ですか。そのきっかけになった出来事も聞かせてください。</li>
+          <li>3月3日に向けて、そしてその先へ、どんな宣言をしますか。</li>
+        </ol>
+      </details>
+    </div>
+  </section>
 
-  function header(){
-    return '<header class="site"><a class="logo" href="#/">多摩の挑戦者100人</a>' +
-      '<span class="when">2027年3月3日（水）八王子エルシィ</span></header>';
-  }
+  <section class="section speakers" id="speakers">
+    <div class="container">
+      <span class="label">特別講演・対談</span>
+      <h2 class="section-title">挑戦し続ける人の、<br>言葉に出会う。</h2>
+      <article class="speaker-card">
+        <div class="photo">写真は<br>準備中です</div>
+        <div>
+          <div class="speaker-role">特別講演　一番札</div>
+          <h3 class="speaker-name">横川 竟<small>よこかわ きわむ</small></h3>
+          <p class="speaker-affil">株式会社高倉町珈琲 代表取締役会長</p>
+          <p class="speaker-desc">兄弟とともに「すかいらーく」を創業。75歳で八王子市高倉町に「高倉町珈琲」を創業しました。「いつも新鮮、いつも親切」を掲げ、「商売は正直であること」を貫いてきた経営者です。</p>
+        </div>
+      </article>
+      <article class="speaker-card">
+        <div class="photo">写真は<br>準備中です</div>
+        <div>
+          <div class="speaker-role">対談</div>
+          <h3 class="speaker-name">小林 りょうこ<small>こばやし りょうこ</small></h3>
+          <p class="speaker-affil">東京都倫理法人会 元会長</p>
+          <p class="speaker-desc">横川竟氏との対談で、挑戦を続ける理由と、その支えになっているものを掘り下げます。</p>
+        </div>
+      </article>
+      <div class="dialogue">
+        <span class="label">対談テーマ</span>
+        <h3>なぜ、挑戦し続けるのか</h3>
+        <p>横川 竟 氏 × 小林 りょうこ 氏</p>
+      </div>
+    </div>
+  </section>
 
-  function wall(){
-    var tags = '';
-    for (var i = 1; i <= TOTAL; i++){
-      var p = byNo[i];
-      if (p){
-        tags += '<a class="tag lit' + (i === 1 ? ' first' : '') + '" href="#/p/' + pad(i) + '" aria-label="' + i + '番 ' + esc(p.name) + 'さんのページ">' +
-          '<span class="no">' + i + '</span><span class="nm">' + esc(p.name.replace(/\s/g, '')) + '</span></a>';
-      } else {
-        tags += '<a class="tag" href="#join" aria-label="' + i + '番 まだ空いています">' +
-          '<span class="no">' + i + '</span></a>';
-      }
-    }
-    var lit = people.length;
-    app.innerHTML = header() +
-      '<section class="hero"><h1>経営者は、<br>何を守るのか。</h1>' +
-      '<p>八王子・多摩で挑み続ける100人の物語を、一枚ずつ札にして掲げます。札に灯がともるのは、あなたが挑戦を語ったとき。</p></section>' +
-      '<div class="board-head"><h2>挑戦者の札</h2><span class="count">灯った札 <b>' + lit + '</b> / ' + TOTAL + '</span></div>' +
-      '<nav class="board" aria-label="100人の札">' + tags + '</nav>' +
-      '<p class="board-note">灯った札を選ぶと、その人の物語が開きます。</p>' +
-      '<section class="join" id="join"><div>' +
-      '<h2>あなたの挑戦を、札に。</h2>' +
-      '<p>参加者お一人おひとりに、挑戦の物語を載せた個人ページをおつくりします。4つの質問に声で答えるだけで、物語が仕上がります。</p>' +
-      '<span class="soon">参加申込は近日開始します</span></div>' +
-      '<dl class="info">' +
-      '<dt>日時</dt><dd>2027年3月3日（水）18時30分から20時30分</dd>' +
-      '<dt>会場</dt><dd>八王子エルシィ</dd>' +
-      '<dt>特別講演</dt><dd>横川 竟（株式会社高倉町珈琲 代表取締役会長）</dd>' +
-      '<dt>対談</dt><dd>横川 竟、小林 りょうこ（東京都倫理法人会 元会長）</dd>' +
-      '<dt>主催</dt><dd>八王子市倫理法人会</dd>' +
-      '</dl></section>' +
-      '<footer>主催 八王子市倫理法人会</footer>';
-    document.title = '多摩の挑戦者100人';
-  }
+  <section class="section program" id="program">
+    <div class="container">
+      <span class="label">当日の流れ</span>
+      <h2 class="section-title">3月3日のプログラム</h2>
+      <div class="schedule">
+        <div class="schedule-item"><time datetime="18:30">18:30</time><div><strong>開会</strong></div></div>
+        <div class="schedule-item"><time datetime="18:40">18:40</time><div><strong>特別講演　横川 竟 氏</strong><small>約45分</small></div></div>
+        <div class="schedule-item"><time datetime="19:40">19:40</time><div><strong>対談　横川 竟 氏 × 小林 りょうこ 氏</strong><small>約30分</small></div></div>
+        <div class="schedule-item"><time datetime="20:30">20:30</time><div><strong>閉会</strong></div></div>
+      </div>
+      <p class="small">プログラムと時間は予定です。変更になる場合があります。</p>
+    </div>
+  </section>
 
-  function person(no){
-    var p = byNo[no];
-    if (!p){
-      app.innerHTML = header() + '<section class="hero"><h1>' + no + '番の札は、まだ空いています。</h1>' +
-        '<p><a href="#/">100人の札に戻る</a></p></section>';
-      return;
-    }
-    var story = p.story.map(function(t){ return '<p>' + esc(t) + '</p>'; }).join('');
-    app.innerHTML = header() +
-      (p.sample ? '<p class="draft">このページは、公開資料をもとにした見本です。ご本人の確認を経て、ご本人の言葉に差し替えてから公開します。</p>' : '') +
-      '<a class="back" href="#/">100人の札に戻る</a>' +
-      '<article class="person"><div>' +
-        '<div class="bigtag" aria-hidden="true"><span class="no">' + p.no + '</span><span class="nm">' + esc(p.name.replace(/\s/g, '')) + '</span></div>' +
-        '<p class="photo-note">写真は、ご本人の了承後に掲載します。</p>' +
-      '</div><div>' +
-        '<h1 class="catch">' + esc(p.catch) + '</h1>' +
-        '<p class="who"><strong>' + esc(p.name) + '</strong>' + esc(p.company) + '　' + esc(p.title) + '</p>' +
-        '<div class="block"><h2>私が大切にしているもの</h2><p class="protect">' + esc(p.values) + '</p></div>' +
-        '<div class="block story"><h2>挑戦の物語</h2>' + story + '</div>' +
-        (p.future ? '<div class="block"><h2>この挑戦がつくる未来</h2><p class="protect" style="font-size:20px">' + esc(p.future) + '</p></div>' : '') +
-        '<div class="block"><h2>宣言' + (p.declarationDraft ? '<span class="kari">仮</span>' : '') + '</h2>' +
-          '<div class="decl"><p>' + esc(p.declaration) + '</p></div></div>' +
-        '<div class="block"><h2>プロフィール</h2><p class="profile">' + esc(p.profile) + '</p></div>' +
-      '</div></article>' +
-      '<section class="next"><p>あなたの挑戦も、この札の隣に並べませんか。</p><a href="#join" onclick="location.hash=\'#/\';setTimeout(function(){var j=document.getElementById(\'join\');if(j)j.scrollIntoView();},50);return false;">参加のご案内を見る</a></section>' +
-      '<footer>主催 八王子市倫理法人会</footer>';
-    document.title = p.name + '｜多摩の挑戦者100人';
-    window.scrollTo(0, 0);
-  }
+  <section class="section details" id="details">
+    <div class="container">
+      <span class="label">参加のご案内</span>
+      <h2 class="section-title">開催概要</h2>
+      <dl class="detail-table">
+        <div class="detail-item"><dt>イベント名</dt><dd>多摩の挑戦者100人<span class="sub">八王子経営者フォーラム2027</span></dd></div>
+        <div class="detail-item"><dt>日時</dt><dd>2027年3月3日（水）18:30〜20:30<span class="sub">受付開始 18:00（予定）</span></dd></div>
+        <div class="detail-item"><dt>会場</dt><dd>八王子エルシィ<span class="sub">東京都八王子市八日町6-7<br>JR八王子駅・京王八王子駅から</span></dd></div>
+        <div class="detail-item"><dt>定員</dt><dd>100名</dd></div>
+        <div class="detail-item"><dt>参加費</dt><dd>準備中<span class="tbd">近日公開</span><span class="sub">お弁当・個人ページの制作を含みます</span></dd></div>
+        <div class="detail-item"><dt>申込方法</dt><dd>Peatix<span class="tbd">近日公開</span></dd></div>
+        <div class="detail-item"><dt>主催</dt><dd>八王子市倫理法人会</dd></div>
+        <div class="detail-item"><dt>お問い合わせ</dt><dd>八王子市倫理法人会<span class="sub"><a href="https://rinri802.org/contact/" target="_blank" rel="noopener noreferrer">お問い合わせページ</a></span></dd></div>
+      </dl>
+    </div>
+  </section>
 
-  function route(){
-    var h = location.hash || '#/';
-    var m = h.match(/^#\/p\/(\d{1,3})$/);
-    if (m) { person(parseInt(m[1], 10)); }
-    else if (h === '#join') { wall(); var j = document.getElementById('join'); if (j) j.scrollIntoView(); }
-    else { wall(); }
-  }
-  window.addEventListener('hashchange', route);
-  route();
-})();
-</script>
+  <section class="section faq" id="faq">
+    <div class="container">
+      <span class="label">参加の前に</span>
+      <h2 class="section-title">よくある質問</h2>
+      <div class="faq-list">
+        <details><summary>話すのが苦手です。録音しないといけませんか。</summary><p>文字で答えることもできます。録音の場合も、うまく話そうとしなくて大丈夫です。思い浮かんだ順にお話しください。</p></details>
+        <details><summary>個人ページは、いつ、どのように公開されますか。</summary><p>お話をもとにつくった原稿をメールでお送りします。ご本人に確認・承認いただいてから公開します。修正のご希望も承ります。</p></details>
+        <details><summary>公開したページを取り下げることはできますか。</summary><p>できます。ご連絡いただければ、いつでも公開を取り下げます。</p></details>
+        <details><summary>倫理法人会の会員でなくても参加できますか。</summary><p>どなたでもご参加いただけます。八王子・多摩で挑戦している方、これから挑戦しようとしている方をお待ちしています。</p></details>
+        <details><summary>当日は参加せず、個人ページだけつくることはできますか。</summary><p>準備中です。決まり次第、このページでお知らせします。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="container">
+      <span class="label">100人の一人として</span>
+      <h2>あなたの挑戦を、<br>一枚の札に。</h2>
+      <p>挑戦し続ける人の言葉に学び、同じ地域で挑む仲間と出会い、あなた自身の挑戦を言葉にする。3月3日、エルシィでお待ちしています。</p>
+      <a class="btn" href="#" aria-label="参加を申し込む（申込ページは準備中）">参加を申し込む <span class="arr" aria-hidden="true">→</span></a>
+      <p class="hero-note">申込ページは準備中です</p>
+    </div>
+  </section>
+</main>
+
+<footer>主催　八王子市倫理法人会　｜　© 2026 八王子市倫理法人会</footer>
+<div class="mobile-cta"><a class="btn" href="#" aria-label="参加を申し込む（申込ページは準備中）">参加を申し込む <span class="arr" aria-hidden="true">→</span></a></div>
 </body>
 </html>
